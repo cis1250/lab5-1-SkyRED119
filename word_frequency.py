@@ -62,7 +62,7 @@ def calculate_frequencies(sentence: str) -> ([], []):
     return words, frequency
 
 
-def print_frequencies(words: [], frequencies: []):
+def print_frequencies(words: [], frequencies: []) -> None:
     for j in range(len(words)):
         print(f"{words[j]}: {frequencies[j]}")
 
