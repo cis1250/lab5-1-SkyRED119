@@ -24,3 +24,53 @@ def is_sentence(text):
         return False
 
     return True
+
+def get_sentence() -> str:
+    user_sentence = input("Enter a sentence: ")
+
+    while (is_sentence(user_sentence) == False):
+        print("This does not meet the criteria for a sentence.")
+        user_sentence = input("Enter a sentence: ")
+    
+    return user_sentence
+
+
+def clean_up_sentence(sentence: str) -> str:
+    sentence = sentence.lower()
+    clean_sentence = ""
+
+    for r in sentence:
+        if r.isalpha() or r.isspace():
+            clean_sentence += r
+
+    return clean_sentence
+
+
+def calculate_frequencies(sentence: str) -> ([], []):
+    sentence = clean_up_sentence(sentence)
+    sentence = sentence.split()
+    words = []
+    frequency = []
+
+    for i in sentence:
+        if i in words:
+            frequency[words.index(i)] += 1
+            continue
+        words.append(i)
+        frequency.append(1)
+
+    return words, frequency
+
+
+def print_frequencies(words: [], frequencies: []):
+    for j in range(len(words)):
+        print(f"{words[j]}: {frequencies[j]}")
+
+
+def main():
+    sentence = get_sentence()
+    sentence_information = calculate_frequencies(sentence)
+    print_frequencies(sentence_information[0], sentence_information[1])
+
+
+main()
